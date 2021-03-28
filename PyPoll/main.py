@@ -32,6 +32,9 @@ with open(election_data_csv, 'r') as csvFile:
 #specify a reader using commas as delimiter
     csvReader = csv.reader(csvFile, delimiter=',')
 
+#declare list
+    candidate_results, percent_results, totals_results = []
+
 #for loop to iterate through rows in csv file
     for row in csvReader:
 

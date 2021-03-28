@@ -31,13 +31,29 @@ with open(budget_dat_csv, 'r') as csvFile:
 #specify a reader using commas as delimiter
     csvReader = csv.reader(csvFile, delimiter=',')
 
+#declare list
+    data_results, list_of_diffs = []
+
+#declare variable to help chop off header
+header_counter = 1
 #for loop to iterate through rows in csv file
     for row in csvReader:
+        if  header_counter == 1:
+            header = csvReader.next()
+            prev_row_PorL = int(row[1])
+            data_results[0] += 1
+        else 
+            list_of_diffs[row - 2] = int(row[1]) - prev_row_PorL 
+            data_results[0] += 1
+            data_results[1] += int(row[1])
+            prev_row_PorL = int(row[1])
+    header_counter += 1
 
+# #pass function output to a string
+# outputString = budget_analysis(data_results)
 
-
-outputString = budget_analysis(data_results)
-with open(writing_path, "w") as textFile:
-        textFile.write(outputString)
+# #write string to a new text file
+# with open(writing_path, "w") as textFile:
+#         textFile.write(outputString)
 
     
