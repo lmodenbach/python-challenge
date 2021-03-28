@@ -20,9 +20,9 @@ def election_analysis(candidate_data, percent_data, totals_data):
     print(f"Election Results\n")
     print(f"-------------------------------\n")
     print(f"Total Votes: {election_data[0]}\n")
-    print(f"{candidate_data[1]}: {percent_data[1]} ({totals_data[3]}\n")
-    print(f"{candidate_data[2]}: {percent_data[2]} ({totals_data[6]}\n")
-    print(f"{candidate_data[3]}: {percent_data[3]} ({totals_data[9]}\n")
+    print(f"{candidate_data[1]}: {percent_data[1]: .3f} ({totals_data[3]}\n")
+    print(f"{candidate_data[2]}: {percent_data[2]: .3f} ({totals_data[6]}\n")
+    print(f"{candidate_data[3]}: {percent_data[3]: .3f} ({totals_data[9]}\n")
     print(f"-----------------------------------------------------------------------------\n")
 
 
@@ -34,3 +34,13 @@ with open(election_data_csv, 'r') as csvFile:
 
 #for loop to iterate through rows in csv file
     for row in csvReader:
+
+
+
+
+#pass function output to a string
+outputString = election_analysis(candidate_results, percent_results, totals_results)
+
+#write string to a new text file
+with open(writing_path, "w") as textFile:
+        textFile.write(outputString)

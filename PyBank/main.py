@@ -12,7 +12,7 @@
 budget_data_csv = os.path.join("..", "Resources", "PyBank", "budget_data.csv")
 
 #create output variable and store path to .txt file
-output_path = os.path.join("PyBank_results.txt")
+writing_path = os.path.join("PyBank_results.txt")
 
 #define function to output data, takes a list of results with desired data in different indices
 def budget_analysis(budget_data):
@@ -24,7 +24,7 @@ def budget_analysis(budget_data):
     print(f"Greatest Increase in profits: {budget_data[3]} (${budget_data[4]})\n")
     print(f"Greatest Decrease in profits: {budget_data[5]} (${budget_data[6]})\n")
     print(f"-----------------------------------------------------------------------------\n")
-
+    
 #pass in path variable and open up csv file for reading
 with open(budget_dat_csv, 'r') as csvFile:
 
@@ -33,3 +33,11 @@ with open(budget_dat_csv, 'r') as csvFile:
 
 #for loop to iterate through rows in csv file
     for row in csvReader:
+
+
+
+outputString = budget_analysis(data_results)
+with open(writing_path, "w") as textFile:
+        textFile.write(outputString)
+
+    
