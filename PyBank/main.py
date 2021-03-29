@@ -7,6 +7,8 @@
 -greatest decrease in losses: min of changes in profits/losses
 -output to python-challenge/PyBank/PyBank_results.txt
 """
+import os
+import csv
 
 #create input variable and store path to source csv
 budget_data_csv = os.path.join("..", "Resources", "PyBank", "budget_data.csv")
@@ -26,29 +28,39 @@ def budget_analysis(budget_data):
     print(f"-----------------------------------------------------------------------------\n")
     
 #pass in path variable and open up csv file for reading
-with open(budget_dat_csv, 'r') as csvFile:
+with open(budget_data_csv, 'r') as csvFile:
 
 #specify a reader using commas as delimiter
     csvReader = csv.reader(csvFile, delimiter=',')
 
 #declare list
-    data_results, list_of_diffs = []
+    data_results = []
+    list_of_diffs = []
 
-#declare variable to help chop off header
-header_counter = 1
+#declare variables to help chop off header and initialize previous row profit/loss variable
+    header_counter = 1
+    prev_ro_PorL = 0
 #for loop to iterate through rows in csv file
     for row in csvReader:
         if  header_counter == 1:
-            header = csvReader.next()
-            prev_row_PorL = int(row[1])
-            data_results[0] += 1
-        else 
+            header = "Header: " + row[0] + row[1]
+        else: 
             list_of_diffs[row - 2] = int(row[1]) - prev_row_PorL 
             data_results[0] += 1
             data_results[1] += int(row[1])
             prev_row_PorL = int(row[1])
     header_counter += 1
+ 
+ #for testing only
+data_results[3] = 11231985
+data_results[4] = 11231985
+data_results[5] = 11231985
+data_results[6] = 11231985
 
+for diff in list_of_diffs:
+    print(f"{diff}\n")
+budget_analysis(data_results)
+    
 # #pass function output to a string
 # outputString = budget_analysis(data_results)
 
