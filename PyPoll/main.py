@@ -9,6 +9,9 @@
 -output results to python-challenge/PyPoll/PyPoll_results.txt
  """
 
+import os
+import csv
+
 #create input variable and store path to source csv
 election_data_csv = os.path.join("..", "Resources", "PyPoll", "election_data.csv")
 
@@ -44,7 +47,10 @@ with open(election_data_csv, 'r') as csvFile:
     percent_results = [] 
     totals_results = []
     vote_count = 0
-    totals_candidate_0, totals_candidate_1, totals_candidate_2 = 0
+    totals_candidate_0 = 0
+    totals_candidate_1 = 0
+    totals_candidate_2 = 0
+
 
 #for loop to iterate through rows in csv file
     for row in csvReader:
@@ -52,7 +58,7 @@ with open(election_data_csv, 'r') as csvFile:
         if (vote_count == 1):
            candidate_results.append(row[2])
            totals_candidate_0 += 1
-        elif (row[2] != candidate_results[0] & row[2] != candidate_results[1] & row[2] != candidate_results[2]):
+        elif (row[2] not in candidate_results):
             candidate_results.append(row[2])
             if (row[2] == candidate_results[0]):
                 totals_candidate_0 += 1
