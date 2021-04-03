@@ -16,7 +16,7 @@ import csv
 election_data_csv = os.path.join("..", "Resources", "PyPoll", "election_data.csv")
 
  #create output variable and store path to .txt file
-output_path = os.path.join("PyPoll_results.txt")
+writing_path = os.path.join("PyPoll_results.txt")
 
 #define function to output data, takes 3 lists of results with desired data in corresponding indices
 def election_analysis(candidate_data, percent_data, totals_data):
@@ -100,6 +100,6 @@ with open(election_data_csv, 'r') as csvFile:
 #print formatted output
 print(election_analysis(candidate_results, percent_results, totals_results))
 
-# #write output to a new text file
-# with open(writing_path, "w") as textFile:
-#         textFile.write(election_analysis(candidate_results, percent_results, totals_results))
+#write output to a new text file
+with open(writing_path, "w") as textFile:
+        textFile.write(election_analysis(candidate_results, percent_results, totals_results))
