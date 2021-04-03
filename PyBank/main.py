@@ -18,15 +18,18 @@ writing_path = os.path.join("PyBank_results.txt")
 
 # #define function to output data, takes a list of results with desired data in different indices
 def budget_analysis(budget_data_list):
-    print(f"-----------------------------------------------------------------------------\n")
-    print(f"Financial Analysis\n")
-    print(f"-------------------------------\n")
-    print(f"Total Months: {budget_data_list[0]}\n")
-    print(f"Total: ${budget_data_list[1]}\n")
-    print(f"Average Change: ${budget_data_list[2]:.2f}\n")
-    print(f"Greatest Increase in profits: {budget_data_list[3]} (${budget_data_list[4]})\n")
-    print(f"Greatest Decrease in profits: {budget_data_list[5]} (${budget_data_list[6]})\n")
-    print(f"-----------------------------------------------------------------------------\n")
+    output_string = (
+    f"-----------------------------------------------------------------------------\n"
+    f"Financial Analysis\n"
+    f"-------------------------------\n"
+    f"Total Months: {budget_data_list[0]}\n"
+    f"Total: ${budget_data_list[1]}\n"
+    f"Average Change: ${budget_data_list[2]:.2f}\n"
+    f"Greatest Increase in profits: {budget_data_list[3]} (${budget_data_list[4]})\n"
+    f"Greatest Decrease in profits: {budget_data_list[5]} (${budget_data_list[6]})\n"
+    f"-----------------------------------------------------------------------------\n"
+    )
+    return output_string
     
 #pass in path variable and open up csv file for reading
 with open(budget_data_csv_path, 'r') as csvFile:
@@ -92,17 +95,11 @@ with open(budget_data_csv_path, 'r') as csvFile:
     data_results.append(min_month_year)
     data_results.append(min_change)   
  
-# #for testing only
-#     for change in list_of_changes:
-#         print(f"{change}\n")
-
-    budget_analysis(data_results)
+#pass results list to function and print
+    print(budget_analysis(data_results))
     
-# #pass function output to a string
-# outputString = budget_analysis(data_results)
-
-# #write string to a new text file
-# with open(writing_path, "w") as textFile:
-#         textFile.write(outputString)
+#write string to a new text file
+with open(writing_path, "w") as textFile:
+        textFile.write(budget_analysis(data_results))
 
     
