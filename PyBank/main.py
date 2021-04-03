@@ -16,7 +16,8 @@ budget_data_csv_path = os.path.join("..", "Resources", "PyBank", "budget_data.cs
 #create output variable and store path to .txt file
 writing_path = os.path.join("PyBank_results.txt")
 
-# #define function to output data, takes a list of results with desired data in different indices
+#define function to output data, takes a list of results with desired data in different indices and 
+#create/return a formatted string
 def budget_analysis(budget_data_list):
     output_string = (
     f"-----------------------------------------------------------------------------\n"
@@ -34,7 +35,7 @@ def budget_analysis(budget_data_list):
 #pass in path variable and open up csv file for reading
 with open(budget_data_csv_path, 'r') as csvFile:
 
-#specify a reader using commas as delimiter
+#specify a csv reader using commas as delimiter
     csvReader = csv.reader(csvFile, delimiter=',')
 
 #declare lists and variables and initialize if needed
@@ -51,16 +52,17 @@ with open(budget_data_csv_path, 'r') as csvFile:
 #for loop to iterate through rows in csv file
     for row in csvReader:
 
-#chop off header, pick up first profit/loss
+#chop off header
         if  (rowControl == 0):
             rowControl += 1
-        
+
+#pick up first profit/loss and store both as first previous profit/loss and first of the total profits/losses        
         elif (rowControl == 1):
             prev_row_PorL = int(row[1])
             total_profits_losses += int(row[1])
             rowControl += 1
 
-#calculate change, reset previous profit/loss, advance index, accumulate net of profits/losses  
+#calculate change and append to list, reset previous profit/loss, accumulate total profits/losses  
         else:     
             current_PorL = int(row[1])
             current_change = current_PorL - prev_row_PorL
@@ -95,7 +97,7 @@ with open(budget_data_csv_path, 'r') as csvFile:
     data_results.append(min_month_year)
     data_results.append(min_change)   
  
-#pass results list to function and print
+#pass results list to string function and print
     print(budget_analysis(data_results))
     
 #write string to a new text file
