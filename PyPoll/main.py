@@ -44,15 +44,23 @@ with open(election_data_csv, 'r') as csvFile:
 
 #for loop to iterate through rows in csv file
     for row in csvReader:
+
+#increment vote_count with each row, initialized to -1 so header doesn't add a vote
         vote_count += 1
+
+#if on first row of data, grab first candidate and record the vote
         if (vote_count == 1):
            candidate_results.append(row[2])
            totals_candidate_0 += 1
+
+#otherwise... 
         elif (vote_count > 1 ):
-        
+
+#check if candidate is in candidate list and append if not        
             if (row[2] not in candidate_results):
                 candidate_results.append(row[2])
-            
+
+#augment the vote for the appropriate candidate            
             if (row[2] == candidate_results[0]):
                 totals_candidate_0 += 1
             elif (row[2] == candidate_results[1]):
@@ -61,11 +69,15 @@ with open(election_data_csv, 'r') as csvFile:
                 totals_candidate_2 += 1
             elif (row[2] == candidate_results[3]):
                 totals_candidate_3 += 1
+
+#add vote_count and candidate totals to results
     totals_results.append(vote_count)
     totals_results.append(totals_candidate_0)
     totals_results.append(totals_candidate_1)
     totals_results.append(totals_candidate_2)
     totals_results.append(totals_candidate_3)
+
+#calculate and record percents, round decimal before converting to int to do math so we don't lose data
     percent_candidate_0 = int(round((totals_candidate_0/vote_count)*100))
     percent_results.append(percent_candidate_0)
     percent_candidate_1 = int(round((totals_candidate_1/vote_count)*100))
@@ -74,6 +86,9 @@ with open(election_data_csv, 'r') as csvFile:
     percent_results.append(percent_candidate_2) 
     percent_candidate_3 = int(round((totals_candidate_3/vote_count)*100))
     percent_results.append(percent_candidate_3)
+
+#figure out who the winner is through comparisons then record - yes this is kind of brittle code but in  
+#a time crunch it works
     if (percent_candidate_0 > percent_candidate_1 & percent_candidate_0 > percent_candidate_2 & percent_candidate_0 > percent_candidate_3):
         candidate_results.append(candidate_results[0])
     elif (percent_candidate_1 > percent_candidate_0 & percent_candidate_1 > percent_candidate_2 & percent_candidate_1 > percent_candidate_3): 
