@@ -5,7 +5,7 @@ import csv
 election_data_csv = os.path.join("..", "Resources", "PyPoll", "election_data.csv")
 
  #create output variable and store path to .txt file
-writing_path = os.path.join("PyPoll_results.txt")
+writing_path = os.path.join("..", "Analysis", "PyPoll_analysis.txt")
 
 #define function to output data, takes 3 lists of results with desired data in corresponding indices
 def election_analysis(candidate_data, percent_data, totals_data):

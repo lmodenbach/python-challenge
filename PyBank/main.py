@@ -5,7 +5,7 @@ import csv
 budget_data_csv_path = os.path.join("..", "Resources", "PyBank", "budget_data.csv")
 
 #create output variable and store path to .txt file
-writing_path = os.path.join("PyBank_results.txt")
+writing_path = os.path.join("..", "Analysis", "PyBank_analysis.txt")
 
 #define function to output data, takes a list of results with desired data in different indices and 
 #create/return a formatted string
