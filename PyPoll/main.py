@@ -87,8 +87,7 @@ with open(election_data_csv, 'r') as csvFile:
     percent_candidate_3 = int(round((totals_candidate_3/vote_count)*100))
     percent_results.append(percent_candidate_3)
 
-#figure out who the winner is through comparisons then record - yes this is kind of brittle code but in  
-#a time crunch it works
+#figure out who the winner is through comparisons then record
     if (percent_candidate_0 > percent_candidate_1 & percent_candidate_0 > percent_candidate_2 & percent_candidate_0 > percent_candidate_3):
         candidate_results.append(candidate_results[0])
     elif (percent_candidate_1 > percent_candidate_0 & percent_candidate_1 > percent_candidate_2 & percent_candidate_1 > percent_candidate_3): 
